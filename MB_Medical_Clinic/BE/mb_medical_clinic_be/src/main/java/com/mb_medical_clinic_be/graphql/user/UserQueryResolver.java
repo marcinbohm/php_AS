@@ -57,4 +57,18 @@ public class UserQueryResolver implements GraphQLQueryResolver {
         Pageable pageable = PageRequest.of(page, size, Sort.by(SortParamMapper.map(orderBy)));
         return userRepository.findByLocation_LocationIdAndUserType(locationId, DictUserType.PATIENT.getCode(), pageable);
     }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize("hasAuthority('USER_READ_PRIVILEGE')")
+    public Page<User> getUserPageByLocationIdAndUserDoctor(@NotNull Integer locationId,
+                                                            @NotNull @Min(0) Integer page, @NotNull @Min(0) @Max(100) Integer size, List<SortOrder> orderBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(SortParamMapper.map(orderBy)));
+        return userRepository.findByLocation_LocationIdAndUserType(locationId, DictUserType.DOCTOR.getCode(), pageable);
+    }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize("hasAuthority('USER_READ_PRIVILEGE')")
+    public List<User> getUsersList() {
+        return userRepository.findByUserTypeIsNot(DictUserType.PATIENT.getCode());
+    }
 }

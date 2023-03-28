@@ -27,6 +27,7 @@ public class CurrentUser implements UserDetails {
     private LocalDate accountExpired;
     private LocalDate passwordExpired;
     private LocalDateTime lastLoginTime;
+    private Integer userType;
     private final Set<GrantedAuthority> grantedAuthorities = new HashSet();
 
     public CurrentUser() {
@@ -134,6 +135,14 @@ public class CurrentUser implements UserDetails {
     public CurrentUser setLastLoginTime(LocalDateTime lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
         return this;
+    }
+
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 
     public CurrentUser addGrantedAuthority(GrantedAuthority authority) {

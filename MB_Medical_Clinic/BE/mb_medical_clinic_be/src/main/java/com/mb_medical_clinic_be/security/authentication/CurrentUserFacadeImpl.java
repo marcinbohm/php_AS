@@ -40,6 +40,7 @@ public class CurrentUserFacadeImpl implements CurrentUserFacade {
         currentUser.setAccountExpired(user.getExpireAccountDate());
         currentUser.setPasswordExpired(user.getExpirePasswordDate());
         currentUser.setLastLoginTime(user.getLastLoginTime());
+        currentUser.setUserType(user.getUserType());
 
         List<Class> classes = this.classRepository.findByClassUserSet_UserId(user.getUserId());
 

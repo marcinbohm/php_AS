@@ -39,7 +39,7 @@ public class RegistrationVerificationServiceImpl implements RegistrationVerifica
         return status;
     }
 
-    protected void checkIfLoginExistsInDb(String login) {
+    public void checkIfLoginExistsInDb(String login) {
         Optional<User> user = userRepository.findByLogin(login);
         if (user.isPresent())
             throw new VerificationStatusException("User with provided login exists in database!");
@@ -68,6 +68,6 @@ public class RegistrationVerificationServiceImpl implements RegistrationVerifica
 
 
         if (!password.matches(pattern))
-            throw new VerificationStatusException("Password is not strong enough!");
+            throw new VerificationStatusException("Has³o nie jest wystarczaj¹co trudne!");
     }
 }

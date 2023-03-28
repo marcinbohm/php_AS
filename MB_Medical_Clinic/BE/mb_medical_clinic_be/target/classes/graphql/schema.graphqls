@@ -31,12 +31,15 @@ type Query {
     examinationPageByLocationId(locationId: ID!, page: Int!, size: Int!, orderBy: [SortOrder]): ExaminationPage
     examinationPageByEncounterId(encounterId: ID!, page: Int!, size: Int!, orderBy: [SortOrder]): ExaminationPage
     location(locationId: ID!): Location
+    locationList: [Location]
     permission(permissionId: ID!): Permission
     session(sessionId: ID!): Session
     sessionByUserId(userId: ID!): Session
     user(userId: ID!): User
     userByLogin(login: String!): User
     userPageByLocationIdAndUserPatient(locationId: ID!, page: Int!, size: Int!, orderBy: [SortOrder]): UserPage
+    userPageByLocationIdAndUserDoctor(locationId: ID!, page: Int!, size: Int!, orderBy: [SortOrder]): UserPage
+    usersList: [User]
     class(classId: ID!): Class
     currentUser: CurrentUser
 }
@@ -74,6 +77,8 @@ type Mutation {
     addClass(data: ClassInput!): OperationStatus
     updateClass(classId: ID!, data: ClassInput!): OperationStatus
     deleteClass(classId: ID!): OperationStatus
+
+    resetPassword(userId: ID!, oldPassword: String!, newPassword: String!): OperationStatus
 }
 
 type User {
@@ -89,6 +94,7 @@ type User {
     expireAccountDate: LocalDate
     expirePasswordDate: LocalDate
     lastLoginTime: LocalDateTime
+    userType: Int
 
     location: Location
 }
@@ -112,6 +118,7 @@ input UserInput {
     expireAccountDate: LocalDate
     expirePasswordDate: LocalDate
     lastLoginTime: LocalDateTime
+    userType: Int
 }
 
 type Session {
@@ -249,6 +256,7 @@ input CategoryInput {
 type Examination {
     examinationId: ID
     encounterId: ID
+    name: String
     description: String
     icd9: String
     executionDate: LocalDateTime
@@ -267,6 +275,7 @@ type ExaminationPage {
 input ExaminationInput {
     examinationId: ID
     encounterId: ID
+    name: String
     description: String
     icd9: String
     executionDate: LocalDateTime
@@ -321,4 +330,5 @@ type CurrentUser {
     email: String
     firstName: String
     lastName: String
+    userType: Int
 }

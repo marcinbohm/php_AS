@@ -30,7 +30,7 @@ public class EncounterInput {
 
     private boolean encounterSetFromInput = false;
 
-    private boolean patientIdFromInput = false;
+    private boolean patientIdSetFromInput = false;
 
     private boolean practitionerIdSetFromInput = false;
 
@@ -67,7 +67,7 @@ public class EncounterInput {
 
     public void setPatientId(Integer patientId) {
         this.patientId = patientId;
-        this.patientIdFromInput = true;
+        this.patientIdSetFromInput = true;
     }
 
     public Integer getPractitionerId() {
@@ -164,8 +164,8 @@ public class EncounterInput {
         return encounterSetFromInput;
     }
 
-    public boolean isPatientIdFromInput() {
-        return patientIdFromInput;
+    public boolean isPatientIdSetFromInput() {
+        return patientIdSetFromInput;
     }
 
     public boolean isPractitionerIdSetFromInput() {

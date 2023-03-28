@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -15,5 +16,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUserIdAndUserSessionsList_RefreshTicket(Integer userId, String refreshTicket);
 
     Page<User> findByLocation_LocationIdAndUserType(Integer locationId, Integer userType, Pageable pageable);
+
+    List<User> findByUserTypeIsNot(Integer userType);
 
 }

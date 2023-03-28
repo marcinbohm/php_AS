@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Service
 public class LocationQueryResolver implements GraphQLQueryResolver {
@@ -24,5 +25,11 @@ public class LocationQueryResolver implements GraphQLQueryResolver {
     public Location getLocation(@NotNull Integer locationId) {
         return locationRepository.findById(locationId)
                 .orElseThrow(EntityNotFoundException::new);
+    }
+
+    @Transactional(readOnly = true)
+    @PreAuthorize("hasAuthority('LOCATION_READ_PRIVILEGE')")
+    public List<Location> getLocationList() {
+        return locationRepository.findAll();
     }
 }

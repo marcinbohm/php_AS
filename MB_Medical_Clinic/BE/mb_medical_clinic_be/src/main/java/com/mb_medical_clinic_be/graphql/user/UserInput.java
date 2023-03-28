@@ -31,6 +31,8 @@ public class UserInput {
 
     private LocalDateTime lastLoginTime;
 
+    private Integer userType;
+
     private boolean locationIdSetFromInput = false;
 
     private boolean firstnameSetFromInput = false;
@@ -52,6 +54,8 @@ public class UserInput {
     private boolean expirePasswordDateSetFromInput = false;
 
     private boolean lastLoginTimeSetFromInput = false;
+
+    private boolean userTypeSetFromInput = false;
 
     public Integer getUserId() {
         return userId;
@@ -160,6 +164,15 @@ public class UserInput {
         this.lastLoginTimeSetFromInput = true;
     }
 
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
+        this.userTypeSetFromInput = true;
+    }
+
     public boolean isLocationIdSetFromInput() {
         return locationIdSetFromInput;
     }
@@ -202,5 +215,9 @@ public class UserInput {
 
     public boolean isLastLoginTimeSetFromInput() {
         return lastLoginTimeSetFromInput;
+    }
+
+    public boolean isUserTypeSetFromInput() {
+        return userTypeSetFromInput;
     }
 }
